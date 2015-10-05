@@ -11,6 +11,7 @@ from cliff.commandmanager import CommandManager
 from .repositories import RepositoryManager
 from .sources import SourceManager
 from .builds import BuildManager
+from .external_dependencies import ExternalDependencyManager
 
 from requests.auth import AuthBase
 
@@ -31,6 +32,7 @@ class Client(object):
         self.Repositories = RepositoryManager(self)
         self.Sources = SourceManager(self)
         self.Builds = BuildManager(self)
+        self.ExternalDependencies = ExternalDependencyManager(self)
 
 class aaSembleApp(App):
     def __init__(self):

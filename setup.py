@@ -37,6 +37,7 @@ setup(
             'source-list = aasembleclient.sources:List',
             'source-build-list = aasembleclient.builds:ListBySource',
             'build-list = aasembleclient.builds:List',
+            'external-dependency-list = aasembleclient.external_dependencies:List',
         ],
     },
 
