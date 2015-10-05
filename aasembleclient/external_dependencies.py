@@ -14,7 +14,6 @@ class ExternalDependencyManager(BaseResourceManager):
     
     def from_json(self, data):
         obj = self.object_class()
-        print data
         obj.client = self.client
         obj.self = data['self']
         obj.key = data['key']

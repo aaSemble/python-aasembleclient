@@ -1,7 +1,6 @@
 import argparse
 
 from .base import BaseResourceManager
-from .repositories import RepositoryManager
 from cliff.lister import Lister
 
 class MirrorSet(object):
