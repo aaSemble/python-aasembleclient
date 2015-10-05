@@ -38,6 +38,9 @@ setup(
             'source-build-list = aasembleclient.builds:ListBySource',
             'build-list = aasembleclient.builds:List',
             'external-dependency-list = aasembleclient.external_dependencies:List',
+            'mirror-list = aasembleclient.mirrors:List',
+            'mirror-set-list = aasembleclient.mirrorsets:List',
+            'snapshot-list = aasembleclient.snapshots:List',
         ],
     },
 

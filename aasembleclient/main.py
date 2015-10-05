@@ -12,6 +12,9 @@ from .repositories import RepositoryManager
 from .sources import SourceManager
 from .builds import BuildManager
 from .external_dependencies import ExternalDependencyManager
+from .mirrors import MirrorManager
+from .mirrorsets import MirrorSetManager
+from .snapshots import SnapshotManager
 
 from requests.auth import AuthBase
 
@@ -33,6 +36,10 @@ class Client(object):
         self.Sources = SourceManager(self)
         self.Builds = BuildManager(self)
         self.ExternalDependencies = ExternalDependencyManager(self)
+        self.Mirrors = MirrorManager(self)
+        self.MirrorSets = MirrorSetManager(self)
+        self.Snapshots = SnapshotManager(self)
+
 
 class aaSembleApp(App):
     def __init__(self):
@@ -54,6 +61,7 @@ class aaSembleApp(App):
                             help='API URL [default=%(default)s',
                             default='https://aasemble.com/api/v1')
         return parser
+
 
 def main(argv=sys.argv[1:]):
     aasembleapp = aaSembleApp()
