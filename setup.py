@@ -35,6 +35,8 @@ setup(
             'repository_list = aasembleclient.repositories:List',
             'repository_sources = aasembleclient.sources:ListByRepository',
             'source_list = aasembleclient.sources:List',
+            'source_create = aasembleclient.sources:Create',
+            'source_delete = aasembleclient.sources:Delete',
             'source_builds = aasembleclient.builds:ListBySource',
             'build_list = aasembleclient.builds:List',
             'external_dependency_list = aasembleclient.external_dependencies:List',

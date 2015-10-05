@@ -1,6 +1,8 @@
 import logging
 import requests
 
+from .exceptions import InvalidDataException
+
 class BaseResourceManager(object):
     def __init__(self, client):
         self.client = client
@@ -18,7 +20,7 @@ class BaseResourceManager(object):
 
         while next_url:
             logging.info('Fetching %s', next_url)
-            res = self.client.session.get(next_url, auth=self.client.auth)
+            res = self.client.session.get(next_url)
             try:
                 data = res.json()
                 for item in data['results']:
@@ -31,9 +33,22 @@ class BaseResourceManager(object):
 
     def _get(self, url):
         logging.info('Fetching %s', url)
-        return self.from_json(self.client.session.get(url, auth=self.client.auth).json())
+        return self.from_json(self.client.session.get(url).json())
         
     def get(self, url, cached=False):
         if not cached or url not in self._cache:
             self._cache[url] = self._get(url)
         return self._cache[url]
+
+    def delete(self, url):
+        response = self.client.session.delete(url)
+        return response.status_code == 204
+
+    def create(self, **kwargs):
+        response = self.client.session.post(self.list_path, json=kwargs)
+        if response.status_code == 201:
+            data = response.json()
+            self._cache[data['self']] = self.from_json(data)
+            return self._cache[data['self']]
+        elif response.status_code == 400:
+            raise InvalidDataException(response.json())

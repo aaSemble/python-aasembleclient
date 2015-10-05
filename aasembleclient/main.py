@@ -30,8 +30,8 @@ class aaSembleAuth(AuthBase):
 class Client(object):
     def __init__(self, url, token):
         self.session = requests.Session()
+        self.session.auth = aaSembleAuth(token)
         self.url = url
-        self.auth = aaSembleAuth(token)
         self.Repositories = RepositoryManager(self)
         self.Sources = SourceManager(self)
         self.Builds = BuildManager(self)
